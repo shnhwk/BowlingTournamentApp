@@ -1,5 +1,5 @@
 import 'package:bowling_tournament/scoped-models/main.dart';
-import 'package:bowling_tournament/widgets/bowler_card.dart';
+import 'package:bowling_tournament/widgets/bowler_card2.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -25,15 +25,20 @@ class _LowAveragesPageState extends State<LowAveragesPage> {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<MainModel>(
       builder: (BuildContext context, Widget child, MainModel model) {
+        if (model.isLoading)
+          return Container(
+              child: Center(
+            child: CircularProgressIndicator(),
+          ));
+
         return Container(
- 
           child: Row(
             children: <Widget>[
- 
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (BuildContext context, int index) =>
-                      BowlerCard(model.tournament.lowAverages[index]),
+                      BowlerCardSlidable(
+                          model.tournament.lowAverages[index], model),
                   itemCount: model.tournament.lowAverages.length,
                 ),
               ),

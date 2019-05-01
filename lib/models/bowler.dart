@@ -3,8 +3,8 @@ class Bowler {
   final String name;
   final int average;
   final int handicap;
-  final bool entered;
-  final bool paid;
+   bool entered;
+   bool paid;
 
   Bowler(
       {this.bowlerId,

@@ -19,6 +19,10 @@ mixin BowlersModel on ConnectedBowlersModel {
     return List.from(_bowlers);
   }
 
+  bool get isLoading{
+    return _isLoading;
+  }
+
   void addBowler(Bowler bowler) {
     _bowlers.add(bowler);
   }
@@ -43,25 +47,35 @@ mixin BowlersModel on ConnectedBowlersModel {
     });
   }
 
-  Future<bool> updateBowler(bool entered, bool paid) async {
+  Future<bool> updateBowler(Bowler bowler) async {
     _isLoading = true;
     notifyListeners();
 
-    final Map<String, dynamic> updateData = {"entered": entered, "paid": paid};
+    final Map<String, dynamic> updateData = {
+      "bowlerId": bowler.bowlerId,
+      "entered": bowler.entered,
+      "paid": bowler.paid
+    };
 
     try {
-      await http.put('', body: json.encode(updateData));
+      String url =
+          'https://bowlingtournamentapi.azurewebsites.net/api/bowlers/' +
+              bowler.bowlerId.toString();
+
+      String body = json.encode(updateData);
+
+      await http.put(url, body: body, headers: { "content-type" : "application/json"});
       _isLoading = false;
 
       final updatedBowler = Bowler(
-          average: selectedBowler.average,
-          name: selectedBowler.name,
-          bowlerId: selectedBowler.bowlerId,
-          handicap: selectedBowler.handicap,
-          paid: paid,
-          entered: entered);
+          average: bowler.average,
+          name: bowler.name,
+          bowlerId: bowler.bowlerId,
+          handicap: bowler.handicap,
+          paid: bowler.paid,
+          entered: bowler.entered);
 
-      _bowlers[selectedBowlerIndex] = updatedBowler;
+      //_bowlers[selectedBowlerIndex] = updatedBowler;
 
       notifyListeners();
       return true;
@@ -137,7 +151,6 @@ mixin BowlersModel on ConnectedBowlersModel {
       _isLoading = false;
       notifyListeners();
       tournament = Tournament.fromJson(responseData);
-      
     }).catchError((error) {
       _isLoading = false;
       notifyListeners();

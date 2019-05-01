@@ -24,6 +24,12 @@ class _TournamentInfoPageState extends State<TournamentInfoPage> {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<MainModel>(
       builder: (BuildContext context, Widget child, MainModel model) {
+        if (model.isLoading)
+          return Container(
+              child: Center(
+            child: CircularProgressIndicator(),
+          ));
+
         return Padding(
           padding: EdgeInsets.all(15),
           child: Column(
@@ -38,7 +44,7 @@ class _TournamentInfoPageState extends State<TournamentInfoPage> {
                 style: TextStyle(fontSize: 21),
               ),
               Text(
-                'Total Money: ' ,
+                'Total Money: ',
                 style: TextStyle(fontSize: 21),
               )
             ],
