@@ -37,15 +37,47 @@ class _TournamentInfoPageState extends State<TournamentInfoPage> {
             children: <Widget>[
               Text(
                 'Number Entered: ' + model.tournament.numberEntered.toString(),
-                style: TextStyle(fontSize: 21),
+                style: TextStyle(fontSize: 19),
               ),
               Text(
                 'Cutoff Average: ' + model.tournament.cutoffAverage.toString(),
-                style: TextStyle(fontSize: 21),
+                style: TextStyle(fontSize: 19),
               ),
               Text(
-                'Total Money: ',
-                style: TextStyle(fontSize: 21),
+                'Total Money: ' + model.tournament.totalMoney.toString(),
+                style: TextStyle(fontSize: 19),
+              ),
+              Text(
+                'Money owed to alley: ' +
+                    model.tournament.moneyOwedToAlley.toString(),
+                style: TextStyle(fontSize: 19),
+              ),
+              Text(
+                'Prize Money: ' + model.tournament.prizeMoney.toString(),
+                style: TextStyle(fontSize: 19),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 20),
+              ),
+              Text(
+                "Suggested Prize Breakdown",
+                style: TextStyle(fontSize: 19),
+              ),
+              Text(
+                '1st: ' + model.tournament.firstPlace.toString(),
+                style: TextStyle(fontSize: 19),
+              ),
+              Text(
+                '2nd: ' + model.tournament.secondPlace.toString(),
+                style: TextStyle(fontSize: 19),
+              ),
+              Text(
+                '3rd: ' + model.tournament.thirdPlace.toString(),
+                style: TextStyle(fontSize: 19),
+              ),
+              Text(
+                '4th: ' + model.tournament.fourthPlace.toString(),
+                style: TextStyle(fontSize: 19),
               )
             ],
           ),

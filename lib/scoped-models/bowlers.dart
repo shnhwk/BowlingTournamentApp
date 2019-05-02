@@ -48,7 +48,7 @@ mixin BowlersModel on ConnectedBowlersModel {
   }
 
   Future<bool> updateBowler(Bowler bowler) async {
-    _isLoading = true;
+    //_isLoading = true;
     notifyListeners();
 
     final Map<String, dynamic> updateData = {

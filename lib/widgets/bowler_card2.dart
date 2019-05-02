@@ -45,6 +45,7 @@ class _BowlerCardSlidableState extends State<BowlerCardSlidable> {
       caption: bowler.entered ? 'Entered' : "Not Entered",
       color: bowler.entered ? Colors.green : Colors.black45,
       icon: bowler.entered ? Icons.check_circle_outline : Icons.add_circle,
+      closeOnTap: false,
       onTap: () => {
             bowler.entered = !bowler.entered,
             _updateBowler(context, widget.bowler)
